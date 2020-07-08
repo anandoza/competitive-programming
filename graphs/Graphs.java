@@ -2,10 +2,12 @@ package library.graphs;
 
 import library.ds.UnionFind;
 import library.util.Util;
+import library.util.pair.Pair;
 
 import java.util.*;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntConsumer;
+import java.util.function.IntUnaryOperator;
 
 public class Graphs {
 
@@ -243,5 +245,46 @@ public class Graphs {
         }
 
         return mst;
+    }
+
+    public static Pair<Integer, int[]> scc(List<Integer>[] adj) {
+        final int n = adj.length;
+
+        int[] components = new int[n];
+        Arrays.fill(components, -1);
+        int[] index = new int[n];
+        Arrays.fill(index, -1);
+        int[] stack = new int[n + 1];
+        Arrays.fill(stack, -1);
+
+        IntUnaryOperator tarjan = new IntUnaryOperator() {
+            public int c = 0, v = 0, top = 0;
+
+            @Override
+            public int applyAsInt(int i) {
+                stack[top++] = i;
+                int low = index[i] = v++;
+                for (int next : adj[i]) {
+                    if (index[next] == -1)
+                        low = Math.min(low, applyAsInt(next));
+                    else if (components[next] == -1)
+                        low = Math.min(low, index[next]);
+                }
+                if (low == index[i]) {
+                    while (stack[top] != i)
+                        components[stack[--top]] = c;
+                    c++;
+                }
+                return low;
+            }
+        };
+
+        for (int i = 0; i < n; i++) {
+            if (index[i] == -1) {
+                tarjan.applyAsInt(i);
+            }
+        }
+
+        return Pair.of(Util.max(components) + 1, components);
     }
 }
