@@ -14,6 +14,10 @@ public class UnionFind {
         }
     }
 
+    public int length() {
+        return __rep.length;
+    }
+
     public int rep(int x) {
         if (__rep[x] == x) {
             return x;
