@@ -3,7 +3,7 @@ package library.ds;
 import library.util.Util;
 
 public class IntCounter {
-    int[] freq;
+    final int[] freq;
     int distinct = 0;
 
     /**

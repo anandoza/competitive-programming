@@ -5,7 +5,8 @@ import java.util.Comparator;
 public class MinQueue<T> {
 
     public final Comparator<T> comparator;
-    private MinStack<T> s1, s2;
+    private final MinStack<T> s1;
+    private final MinStack<T> s2;
 
     public MinQueue(Comparator<T> comparator) {
         this.comparator = comparator;

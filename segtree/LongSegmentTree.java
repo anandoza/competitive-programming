@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class LongSegmentTree {
 
-    public int size;
-    public long[] value;
+    public final int size;
+    public final long[] value;
 
     protected final Combiner combiner;
     protected final long identityElement;

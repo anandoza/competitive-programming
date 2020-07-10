@@ -23,7 +23,7 @@ public class FullIntSegmentTree extends IntSegmentTree {
 
         int loc = 1;
         int cur = identityElement;
-        for (; loc < size; ) {
+        while (loc < size) {
             int mid = combine(cur, value[2 * loc]);
             if (bigEnough.test(mid)) {
                 loc = 2 * loc;

@@ -43,8 +43,8 @@ public class Graphs {
     }
 
     public static class BellmanFord {
-        public long[] distance;
-        public int[] predecessor;
+        public final long[] distance;
+        public final int[] predecessor;
         public boolean cycle;
 
         public BellmanFord(int n, List<Edge> edges, int start) {

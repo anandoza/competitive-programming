@@ -4,9 +4,9 @@ import static library.util.Util.ASSERT;
 
 public class IntMinSparseTable {
 
-    public int size;
-    public int[] table;
-    private int maxLength;
+    public final int size;
+    public final int[] table;
+    private final int maxLength;
 
     public IntMinSparseTable(int[] array) {
         this.size = array.length;

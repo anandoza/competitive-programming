@@ -2,7 +2,8 @@ package library.ds;
 
 public class IntMinQueue {
 
-    private IntMinStack s1, s2;
+    private final IntMinStack s1;
+    private final IntMinStack s2;
 
     public IntMinQueue() {
         s1 = new IntMinStack();

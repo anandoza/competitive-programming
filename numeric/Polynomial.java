@@ -16,18 +16,15 @@ public class Polynomial<M extends Modulus<M>> {
         m = modulus;
         n = degree;
         this.coeff = new long[n + 1];
-        for (int i = 0; i < Math.min(this.coeff.length, coeff.length); i++) {
-            this.coeff[i] = coeff[i];
-        }
+        if (Math.min(this.coeff.length, coeff.length) >= 0)
+            System.arraycopy(coeff, 0, this.coeff, 0, Math.min(this.coeff.length, coeff.length));
     }
 
     public Polynomial(M modulus, long... coeff) {
         m = modulus;
         n = coeff.length - 1;
         this.coeff = new long[n + 1];
-        for (int i = 0; i <= n; i++) {
-            this.coeff[i] = coeff[i];
-        }
+        System.arraycopy(coeff, 0, this.coeff, 0, n + 1);
     }
 
     public long eval(long x) {

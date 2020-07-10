@@ -22,7 +22,7 @@ public class FullLongSegmentTree extends LongSegmentTree {
 
         int loc = 1;
         long cur = identityElement;
-        for (; loc < size; ) {
+        while (loc < size) {
             long mid = combine(cur, value[2 * loc]);
             if (bigEnough.apply(mid)) {
                 loc = 2 * loc;

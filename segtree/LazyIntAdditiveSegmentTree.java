@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class LazyIntAdditiveSegmentTree {
 
-    public int size;
-    public int[] value;
-    public boolean[] has;
-    public int[] ops;
+    public final int size;
+    public final int[] value;
+    public final boolean[] has;
+    public final int[] ops;
 
     protected final Combiner combiner;
     protected final int identityElement;

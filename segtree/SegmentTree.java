@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class SegmentTree<T> {
 
-    public int size;
-    public T[] value;
+    public final int size;
+    public final T[] value;
 
     private final Combiner<T> combiner;
     private final T identityElement;

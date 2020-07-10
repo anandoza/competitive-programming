@@ -9,9 +9,9 @@ import static library.graphs.Graphs.Edge;
 
 public class Tree {
 
-    public int[] v;
-    public List<Integer>[] adj;
-    public Edge[] edges;
+    public final int[] v;
+    public final List<Integer>[] adj;
+    public final Edge[] edges;
 
     public Tree(int[] v, Edge[] edges) {
         this(v.length, edges);

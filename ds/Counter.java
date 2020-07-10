@@ -3,7 +3,7 @@ package library.ds;
 import java.util.HashMap;
 
 public class Counter<T> {
-    public HashMap<T, Integer> count = new HashMap<>();
+    public final HashMap<T, Integer> count = new HashMap<>();
 
     public Counter() {
     }

@@ -6,8 +6,8 @@ import static library.util.Util.ASSERT;
 
 public class SparseTable<T> {
 
-    public int size;
-    public T[] table;
+    public final int size;
+    public final T[] table;
 
     private final Combiner<T> combiner;
 

@@ -117,8 +117,8 @@ public class NumberTheory {
     public abstract static class Modulus<M extends Modulus<M>> {
         public abstract long modulus();
 
-        ArrayList<Long> factorial = new ArrayList<>();
-        ArrayList<Long> invFactorial = new ArrayList<>();
+        final ArrayList<Long> factorial = new ArrayList<>();
+        final ArrayList<Long> invFactorial = new ArrayList<>();
 
         public Modulus() {
             super();

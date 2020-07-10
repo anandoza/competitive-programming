@@ -2,8 +2,8 @@ package library.segtree;
 
 public class IntSumSegmentTree {
 
-    public int size;
-    public int[] value;
+    public final int size;
+    public final int[] value;
 
     public IntSumSegmentTree(int size) {
         this.size = size;

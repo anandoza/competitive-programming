@@ -7,8 +7,8 @@ import java.util.Deque;
 public class MinStack<T> {
 
     public final Comparator<T> comparator;
-    Deque<T> items = new ArrayDeque<>();
-    Deque<T> mins = new ArrayDeque<>();
+    final Deque<T> items = new ArrayDeque<>();
+    final Deque<T> mins = new ArrayDeque<>();
 
     public MinStack(Comparator<T> comparator) {
         this.comparator = comparator;

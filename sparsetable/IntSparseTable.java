@@ -4,9 +4,9 @@ import static library.util.Util.ASSERT;
 
 public class IntSparseTable {
 
-    public int size;
-    public int[] table;
-    private int maxLength;
+    public final int size;
+    public final int[] table;
+    private final int maxLength;
 
     private final Combiner combiner;
 

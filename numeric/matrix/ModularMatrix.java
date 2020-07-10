@@ -7,7 +7,7 @@ import static library.util.Util.ASSERT;
 
 public class ModularMatrix {
     final int rows, cols;
-    Modulus m;
+    final Modulus m;
     public long[][] data;
 
     public ModularMatrix(int rows, int cols, Modulus m) {

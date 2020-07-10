@@ -37,12 +37,9 @@ public class Fraction implements Comparable<Fraction> {
     }
 
     public void add(Fraction o) {
-        long lcm = d / (gcd(d, o.d)) * o.d;
-
-        long newD = lcm;
-        long newN = n * (newD / d) + o.n * (newD / o.d);
-        n = newN;
-        d = newD;
+        long lcm = NumberTheory.lcm(d, o.d);
+        n = n * (lcm / d) + o.n * (lcm / o.d);
+        d = lcm;
 
         reduce();
     }

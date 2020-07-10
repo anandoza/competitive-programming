@@ -2,9 +2,9 @@ package library.ds;
 
 public class IntMinMaxStack {
 
-    public IntStack items;
-    public IntStack mins;
-    public IntStack maxs;
+    public final IntStack items;
+    public final IntStack mins;
+    public final IntStack maxs;
 
     public IntMinMaxStack() {
         items = new IntStack();

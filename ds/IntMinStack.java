@@ -2,8 +2,8 @@ package library.ds;
 
 public class IntMinStack {
 
-    IntStack items;
-    IntStack mins;
+    final IntStack items;
+    final IntStack mins;
 
     public IntMinStack() {
         items = new IntStack();

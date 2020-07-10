@@ -2,8 +2,8 @@ package library.ds;
 
 public class UnionFind {
 
-    private int[] __rep;
-    private int[] __size;
+    private final int[] __rep;
+    private final int[] __size;
 
     public UnionFind(int n) {
         __rep = new int[n];

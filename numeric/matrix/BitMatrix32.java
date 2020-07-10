@@ -2,7 +2,7 @@ package library.numeric.matrix;
 
 public class BitMatrix32 {
     final int rows, cols;
-    public int[] data;
+    public final int[] data;
 
     public BitMatrix32(int rows, int cols) {
         this.rows = rows;

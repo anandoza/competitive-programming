@@ -190,7 +190,7 @@ public class Point implements Comparable<Point> {
         Arrays.sort(points, pivot, points.length, SORT_BY_ANGLE_IN_SAME_HALF_PLANE);
     }
 
-    public static Comparator<Point> SORT_BY_ANGLE_IN_SAME_HALF_PLANE = (a, b) -> {
+    public static final Comparator<Point> SORT_BY_ANGLE_IN_SAME_HALF_PLANE = (a, b) -> {
         long r = Point.cross(b, a);
         return r > 0 ? 1 : r < 0 ? -1 : 0;
     };

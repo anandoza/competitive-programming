@@ -23,8 +23,9 @@ public class LowestCommonAncestor {
         }
     }
 
-    public int[] depth, pos;
-    public Visit[] tour;
+    public final int[] depth;
+    public final int[] pos;
+    public final Visit[] tour;
 
     public LowestCommonAncestor(List<Integer>[] adj, int root) {
         int n = adj.length;

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class InputReader {
-    public BufferedReader reader;
+    public final BufferedReader reader;
     public StringTokenizer tokenizer;
 
     public InputReader(InputStream stream) {
@@ -85,9 +85,5 @@ public class InputReader {
             x[i] = nextDouble();
         }
         return x;
-    }
-
-    public String nextLine() {
-        return null;
     }
 }
