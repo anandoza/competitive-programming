@@ -2,6 +2,7 @@ package library.util;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.function.Predicate;
 
 public class Util {
     public static String formatDouble(double x) {
@@ -322,5 +323,32 @@ public class Util {
             max = Math.max(max, sum);
         }
         return max;
+    }
+
+    /**
+     * [0, returnValue) is where the predicate is true.
+     */
+    public static <T> int partition(T[] a, Predicate<T> first) {
+        return partition(a, first, 0, a.length);
+    }
+
+    /**
+     * Partitions [l, r).
+     * <p>
+     * [l, returnValue) is where the predicate is true.
+     */
+    public static <T> int partition(T[] a, Predicate<T> first, int l, int r) {
+        while (l < r && first.test(a[l])) {
+            l++;
+        }
+        if (l == r)
+            return l;
+        for (int i = l + 1; i < r; i++) {
+            if (first.test(a[i])) {
+                Util.swap(a, i, l);
+                l++;
+            }
+        }
+        return l;
     }
 }
