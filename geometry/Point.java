@@ -2,7 +2,9 @@ package library.geometry;
 
 import library.InputReader;
 import library.numeric.NumberTheory;
+import library.util.Util;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -181,16 +183,15 @@ public class Point implements Comparable<Point> {
         return true;
     }
 
-    public static Comparator<Point> SORT_BY_ANGLE = new Comparator<Point>() {
-        private final Point Z = zero();
+    public static void sortByAngle(Point[] points) {
+        int firstNonZero = Util.partition(points, p -> p.x == 0 && p.y == 0);
+        int pivot = Util.partition(points, p -> p.y > 0 || p.y == 0 && p.x > 0, firstNonZero, points.length);
+        Arrays.sort(points, firstNonZero, pivot, SORT_BY_ANGLE_IN_SAME_HALF_PLANE);
+        Arrays.sort(points, pivot, points.length, SORT_BY_ANGLE_IN_SAME_HALF_PLANE);
+    }
 
-        @Override
-        public int compare(Point a, Point b) {
-            int x = a.compareTo(Z), y = b.compareTo(Z);
-            if (x != y)
-                return x > 0 ? -1 : 1;
-            long r = Point.cross(a, b);
-            return r > 0 ? 1 : r < 0 ? -1 : 0;
-        }
+    public static Comparator<Point> SORT_BY_ANGLE_IN_SAME_HALF_PLANE = (a, b) -> {
+        long r = Point.cross(b, a);
+        return r > 0 ? 1 : r < 0 ? -1 : 0;
     };
 }
