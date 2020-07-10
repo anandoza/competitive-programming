@@ -1,5 +1,6 @@
 package library.geometry;
 
+import library.InputReader;
 import library.numeric.NumberTheory;
 
 import java.util.Comparator;
@@ -14,6 +15,22 @@ public class Point implements Comparable<Point> {
     public Point(long x, long y) {
         this.x = x;
         this.y = y;
+    }
+
+    public static Point of(long x, long y) {
+        return new Point(x, y);
+    }
+
+    public static Point read(InputReader in) {
+        return new Point(in.nextLong(), in.nextLong());
+    }
+
+    public static Point[] readPoints(InputReader in, int n) {
+        Point[] p = new Point[n];
+        for (int i = 0; i < n; i++) {
+            p[i] = read(in);
+        }
+        return p;
     }
 
     public static Point zero() {
