@@ -1,5 +1,7 @@
 package library.graphs;
 
+import library.sparsetable.IntSparseTable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +28,7 @@ public class LowestCommonAncestor {
     public final int[] depth;
     public final int[] pos;
     public final Visit[] tour;
+    IntSparseTable table;
 
     public LowestCommonAncestor(List<Integer>[] adj, int root) {
         int n = adj.length;
@@ -41,6 +44,24 @@ public class LowestCommonAncestor {
         for (int i = 0; i < this.tour.length; i++) {
             this.tour[i] = tour.get(i);
         }
+
+        table = new IntSparseTable(this.tour.length, (a, b) -> this.tour[a].depth < this.tour[b].depth ? a : b);
+        for (int i = 0; i < table.size; i++) {
+            table.update_LAZY(i, i);
+        }
+        table.rebuild();
+    }
+
+    public int lca(int u, int v) {
+        u = pos[u];
+        v = pos[v];
+
+        if (u > v) {
+            int t = u;
+            u = v;
+            v = t;
+        }
+        return tour[table.query(u, v)].node;
     }
 
     void dfs(int root, ArrayList<Visit> tour, int parent, List<Integer>[] adj) {
