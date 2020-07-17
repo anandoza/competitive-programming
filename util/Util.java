@@ -1,6 +1,7 @@
 package library.util;
 
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -350,5 +351,19 @@ public class Util {
             }
         }
         return l;
+    }
+
+    public static int mex(int... x) {
+        BitSet bs = new BitSet();
+        for (int i : x)
+            bs.set(i);
+        return bs.nextClearBit(0);
+    }
+
+    public static int mex(Iterable<Integer> x) {
+        BitSet bs = new BitSet();
+        for (int i : x)
+            bs.set(i);
+        return bs.nextClearBit(0);
     }
 }
