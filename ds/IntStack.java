@@ -8,7 +8,7 @@ public class IntStack {
     int size = 0;
 
     public IntStack() {
-        this(10);
+        this(8);
     }
 
     public IntStack(int capacity) {
@@ -38,8 +38,7 @@ public class IntStack {
     }
 
     private static int[] resize(int[] array) {
-        int newSize = 1 + ((array.length * 16) / 10);
-        int[] newArray = new int[newSize];
+        int[] newArray = new int[array.length << 1];
         System.arraycopy(array, 0, newArray, 0, array.length);
         return newArray;
     }
