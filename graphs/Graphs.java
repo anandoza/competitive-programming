@@ -5,8 +5,6 @@ import library.util.Util;
 import library.util.pair.Pair;
 
 import java.util.*;
-import java.util.function.IntBinaryOperator;
-import java.util.function.IntConsumer;
 import java.util.function.IntUnaryOperator;
 
 public class Graphs {
@@ -84,38 +82,36 @@ public class Graphs {
         return topologicalSort(realAdj);
     }
 
+    /**
+     * If there is a cycle, the returned array will not contain all vertices.
+     */
     public static int[] topologicalSort(List<Integer>[] adj) {
         final int n = adj.length;
+        int[] inDegree = new int[n];
         int[] answer = new int[n];
-
-        BitSet visited = new BitSet(n);
-
-        IntConsumer dfs = new IntConsumer() {
-            int answerIndex = 0;
-
-            @Override
-            public void accept(int i) {
-                visited.set(i);
-
-                for (int j : adj[i]) {
-                    if (visited.get(j))
-                        continue;
-
-                    accept(j);
-                }
-
-                answer[answerIndex++] = i;
-            }
-        };
+        int size = 0;
 
         for (int i = 0; i < n; i++) {
-            if (visited.get(i))
-                continue;
-
-            dfs.accept(i);
+            for (int j : adj[i])
+                inDegree[j]++;
         }
 
-        Util.reverse(answer);
+        for (int i = 0; i < n; i++) {
+            if (inDegree[i] == 0)
+                answer[size++] = i;
+        }
+
+        int q = 0;
+        while (q < size) {
+            int cur = answer[q++];
+            for (int next : adj[cur]) {
+                if (--inDegree[next] == 0)
+                    answer[size++] = next;
+            }
+        }
+
+        if (size < answer.length)
+            return Arrays.copyOf(answer, size);
 
         return answer;
     }
@@ -165,25 +161,25 @@ public class Graphs {
     public static int[] preorder(List<Integer>[] adj, int root) {
         final int n = adj.length;
         int[] preorder = new int[n];
+        int[] stack = new int[n];
+        BitSet visited = new BitSet();
+        int top = -1;
+        visited.set(root);
+        stack[++top] = root;
 
-        IntBinaryOperator dfs = new IntBinaryOperator() {
-            int index = 0;
+        int index = 0;
+        while (top >= 0) {
+            int cur = stack[top--];
+            preorder[index++] = cur;
+            for (int i = adj[cur].size() - 1; i >= 0; i--) {
+                int j = adj[cur].get(i);
+                if (visited.get(j))
+                    continue;
 
-            @Override
-            public int applyAsInt(int cur, int parent) {
-                preorder[index++] = cur;
-                for (int j : adj[cur]) {
-                    if (j == parent)
-                        continue;
-
-                    this.applyAsInt(j, cur);
-                }
-
-                return 0;
+                stack[++top] = j;
+                visited.set(j);
             }
-        };
-
-        dfs.applyAsInt(root, -1);
+        }
 
         return preorder;
     }
