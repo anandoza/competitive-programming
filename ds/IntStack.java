@@ -37,6 +37,10 @@ public class IntStack {
         size = 0;
     }
 
+    public int size() {
+        return size;
+    }
+
     private static int[] resize(int[] array) {
         int[] newArray = new int[array.length << 1];
         System.arraycopy(array, 0, newArray, 0, array.length);
