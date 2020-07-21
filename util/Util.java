@@ -1,8 +1,6 @@
 package library.util;
 
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class Util {
@@ -365,5 +363,13 @@ public class Util {
         for (int i : x)
             bs.set(i);
         return bs.nextClearBit(0);
+    }
+
+    public static <T> List<T>[] arrayOfLists(int n) {
+        List<T>[] array = new List[n];
+        for (int i = 0; i < n; i++) {
+            array[i] = new ArrayList<>();
+        }
+        return array;
     }
 }
