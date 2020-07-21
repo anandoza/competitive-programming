@@ -26,7 +26,7 @@ public class Permutations {
         return p;
     }
 
-    public static int[] readPermutation(int n, InputReader in) {
+    public static int[] readPermutation(InputReader in, int n) {
         int[] p = in.readIntArray(n);
         for (int i = 0; i < n; i++) {
             p[i]--;
