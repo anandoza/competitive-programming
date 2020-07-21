@@ -106,6 +106,16 @@ public class Permutations {
         return permutation;
     }
 
+    public static boolean isPermutation(int[] p) {
+        HashSet<Integer> s = new HashSet<>();
+        for (int x : p) {
+            boolean add = s.add(x);
+            if (!add)
+                return false;
+        }
+        return true;
+    }
+
     public static int[] inverse(int[] permutation) {
         int n = permutation.length;
         int[] inverse = new int[n];
