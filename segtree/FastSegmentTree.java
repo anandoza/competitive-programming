@@ -25,6 +25,10 @@ public class FastSegmentTree<T extends Storage<T>> {
         }
     }
 
+    public FastSegmentTree(int size, IntFunction<T> constructor, boolean powerOfTwo) {
+        this(powerOfTwo ? powerOfTwo(size) : size, constructor);
+    }
+
     public void rebuild() {
         for (int i = size - 1; i > 0; i--) {
             value.combine(i, 2 * i, 2 * i + 1);
@@ -89,5 +93,12 @@ public class FastSegmentTree<T extends Storage<T>> {
             }
         }
         value.combine(0, left, right);
+    }
+
+    private static int powerOfTwo(int n) {
+        int powerOfTwo = Integer.highestOneBit(n);
+        if (powerOfTwo < n)
+            powerOfTwo *= 2;
+        return powerOfTwo;
     }
 }
